@@ -11,14 +11,14 @@ app.get("/cakes", (req, res) => {
     res.json({ cakes: cakes })
 })
 
-app.get("/cakes/:id", (req, res) => {
+app.get("/cakes/:id", (req, res, next) => {
     const id = (req.params.id)
 
-    const cakes = cakes.filter(cakes => {
-        return cakes.id == id
+    let cake = cakes.filter(cake => {
+        return cake.id == id
     })[0]
 
-    res.json(cakes)
+    res.json({ cakes: cake })
 })
 
 app.use(notFound)
